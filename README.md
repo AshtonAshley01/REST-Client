@@ -1,7 +1,7 @@
 for server
 
 create a .env file and add contents like this:
-DATABASE_URL='<connection string>'
+DATABASE_URL='(connection string)'
 PORT=4000
 
 
