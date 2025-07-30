@@ -1,0 +1,247 @@
+/* Base & Dark Theme */
+:root {
+  --background-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --panel-background: #242424;
+  --input-background: #333;
+  --border-color: #444;
+  --accent-color: #646cff;
+  --status-ok: #4ade80;
+  --status-error: #f87171;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 1rem;
+}
+
+/*Main Layout*/
+.app-container {
+  display: flex;
+  flex-direction: row; 
+  gap: 2rem;
+  max-width: 1280px;
+  margin: auto;
+}
+
+.history-panel {
+  flex: 1; 
+}
+
+.main-panel {
+  flex: 3; 
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Component Styling */
+h1, h2 {
+  margin-top: 0;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+/* Request Controls */
+.request-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.request-controls select,
+.request-controls input {
+  padding: 0.75rem;
+  background-color: var(--input-background);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.request-controls input {
+  flex-grow: 1;
+}
+
+.request-controls button,
+.pagination-controls button {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.request-controls button:hover,
+.pagination-controls button:hover {
+  background-color: #535bf2;
+}
+
+.request-controls button:disabled {
+  background-color: #444;
+  cursor: not-allowed;
+}
+
+/* Body Textarea */
+.body-textarea {
+  width: 100%;
+  height: 150px;
+  padding: 0.75rem;
+  background-color: var(--input-background);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+/* Response Area */
+.response-area {
+  background-color: var(--panel-background);
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  min-height: 100px;
+}
+
+.response-area pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* History List */
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.history-list li {
+  padding: 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  word-break: break-all;
+}
+
+.history-list li:hover {
+  background-color: var(--input-background);
+}
+
+.method-get { color: var(--status-ok); }
+.method-post { color: #facc15; }
+.method-put { color: #60a5fa; }
+.method-delete { color: var(--status-error); }
+.method-error { color: var(--status-error); }
+
+
+/* Pagination */
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagination-controls button:disabled {
+  background-color: #444;
+  cursor: not-allowed;
+}
+
+
+/* Mobile Tab Controls */
+.mobile-tabs {
+  display: none;
+  width: 100%;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1rem;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 0.75rem;
+  background-color: transparent;
+  color: var(--text-color);
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.tab-button.active {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+
+
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .mobile-tabs {
+    display: flex;
+  }
+
+  .main-panel,
+  .history-panel {
+    display: none;
+  }
+
+  .app-container.request-active .main-panel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-container.history-active .history-panel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Make request controls wrap properly */
+  .request-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .request-controls select,
+  .request-controls input,
+  .request-controls button {
+    width: 100%;
+  }
+}
+
+
+/* Responsive Breakpoint */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  /* Show tabs and hide one panel on mobile */
+  .mobile-tabs {
+    display: flex; 
+  }
+
+  .main-panel, .history-panel {
+    display: none;
+  }
+
+  /* Show the active panel based on the container's class */
+  .request-active .main-panel {
+    display: flex; 
+  }
+  
+  .history-active .history-panel {
+    display: flex; 
+    flex-direction: column;
+  }
+}
